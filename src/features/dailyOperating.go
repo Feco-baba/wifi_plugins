@@ -1,26 +1,26 @@
-package features
+package excetionfeatures
 
 import (
-	Entity "wifi_plugins/src/entity"
-	ExceptionHandler "wifi_plugins/src/excetion"
-	Operator "wifi_plugins/src/operations"
-	Utils "wifi_plugins/src/utils"
+	"wifi_plugins/entity"
+	"wifi_plugins/excetion"
+	"wifi_plugins/operations"
+	"wifi_plugins/utils"
 )
 
 func RefreshServerConfig() {
 	//to instance customer information
-	cusInfo := ExceptionHandler.CommonExceptionHandler(Utils.LoadCustomerInfo())
+	cusInfo := excetion.CommonExceptionHandler(utils.LoadCustomerInfo())
 	// 停止Clash服务
-	ExceptionHandler.CommonExceptionHandler(Operator.StopClashService())
+	excetion.CommonExceptionHandler(operations.StopClashService())
 	// 删除现有服务配置
-	ExceptionHandler.CommonExceptionHandler(Operator.DeleteServerConfig())
+	excetion.CommonExceptionHandler(operations.DeleteServerConfig())
 	// 获取服务器订阅地址
-	deviceBasicConfig := ExceptionHandler.CommonExceptionHandler[Entity.DeviceBasicConfig](Utils.LoadDeviceConfigUtil(cusInfo))
-	subscribeLink := Utils.LoadSubscribeLinkUtil(deviceBasicConfig.ServerSubscribeURL, cusInfo)
+	deviceBasicConfig := excetion.CommonExceptionHandler[entity.DeviceBasicConfig](utils.LoadDeviceConfigUtil(cusInfo))
+	subscribeLink := utils.LoadSubscribeLinkUtil(deviceBasicConfig.ServerSubscribeURL, cusInfo)
 	// 替换服务器订阅地址
-	ExceptionHandler.CommonExceptionHandler(Operator.ResetServesConfig(subscribeLink))
+	excetion.CommonExceptionHandler(operations.ResetServesConfig(subscribeLink))
 	// 重新加载服务配置
-	ExceptionHandler.CommonExceptionHandler(Operator.StartClashService())
+	excetion.CommonExceptionHandler(operations.StartClashService())
 	// 启动Clash服务
-	ExceptionHandler.CommonExceptionHandler(Operator.StartClashService())
+	excetion.CommonExceptionHandler(operations.StartClashService())
 }

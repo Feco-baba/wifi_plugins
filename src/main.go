@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"net/http"
-	WebServices "wifi_plugins/src/http"
+	http2 "wifi_plugins/http"
 )
 
 func main() {
-	http.HandleFunc("/resetConfig", WebServices.ResetConfig) //重设节点配置
+	http.HandleFunc("/resetConfig", http2.ResetConfig) //重设节点配置
 
 	err := http.ListenAndServe("0.0.0.0:8081", nil)
 	if err != nil {
