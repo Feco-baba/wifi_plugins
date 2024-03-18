@@ -2,10 +2,10 @@ package utils
 
 import (
 	"github.com/spf13/viper"
-	Entity "wifi_plugins/src/entity"
+	"wifi_plugins/entity"
 )
 
-func LoadCustomerInfo() (cusInfo Entity.CustomerInfo, err error) {
+func LoadCustomerInfo() (cusInfo entity.CustomerInfo, err error) {
 
 	viper.SetConfigName("customerInfo") // 配置文件名称（不带扩展名）
 	viper.AddConfigPath(".")            // 添加搜索路径（当前目录）
