@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os/exec"
-	Features "wifi_plugins/src/features"
+	"wifi_plugins/features"
 )
 
 func Check(w http.ResponseWriter, r *http.Request) {
@@ -59,7 +59,7 @@ func DeleteConfig(w http.ResponseWriter, r *http.Request) {
 }
 
 func ResetConfig(w http.ResponseWriter, r *http.Request) {
-	Features.RefreshServerConfig()
+	excetionfeatures.RefreshServerConfig()
 }
 
 func TurnOnSSH(w http.ResponseWriter, r *http.Request) {
