@@ -1,6 +1,2 @@
 cd src
-
-set GOOS=linux
-set GOARCH=arm
-set GOARM=7
-go build -o wifi_plugins
+ GOARM=7 GOARCH=arm GOOS=linux go build -o wifi_plugins

@@ -7,7 +7,7 @@ import (
 
 func LoadCustomerInfo() (cusInfo entity.CustomerInfo, err error) {
 
-	viper.SetConfigName("customerInfo") // 配置文件名称（不带扩展名）
+	viper.SetConfigName("customerInfo") // 配置文件名称（不带扩展名）github.com/spf13/viper windows 不能变易
 	viper.AddConfigPath(".")            // 添加搜索路径（当前目录）
 
 	// 读取配置文件
