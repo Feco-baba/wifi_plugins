@@ -1,4 +1,4 @@
-package excetionfeatures
+package features
 
 import (
 	"fmt"
@@ -18,7 +18,7 @@ func RefreshServerConfig() {
 				fmt.Printf(deleteResult)
 				deviceBasicConfig, devConfigErr := utils.LoadDeviceConfigUtil(cusInfo)
 				fmt.Printf(deviceBasicConfig.ServerSubscribeURL)
-				fmt.Printf(string(deviceBasicConfig.SshTurnOn))
+				fmt.Printf(string(rune(deviceBasicConfig.SshTurnOn)))
 				if devConfigErr == nil {
 					subscribeLink := utils.LoadSubscribeLinkUtil(deviceBasicConfig.ServerSubscribeURL, cusInfo)
 					fmt.Printf(subscribeLink)

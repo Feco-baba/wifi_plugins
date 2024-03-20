@@ -59,22 +59,10 @@ func DeleteConfig(w http.ResponseWriter, r *http.Request) {
 }
 
 func ResetConfig(w http.ResponseWriter, r *http.Request) {
-	excetionfeatures.RefreshServerConfig()
+	features.RefreshServerConfig()
 }
 
 func TurnOnSSH(w http.ResponseWriter, r *http.Request) {
-	query := r.URL.Query()
-	channelID := query.Get("channelid")
-	//调用linux的命令
-	// 创建一个新的 exec.Command 对象
-	fmt.Fprintf(w, "远程开启...")
-	outCmd := exec.Command("./sunny", "clientid", channelID)
-	// 获取命令输出
-	output, err := outCmd.Output()
-	if err != nil {
-		fmt.Fprintf(w, err.Error())
-		return
-	}
-	outPutStr := string(output) + string("开启成功")
-	fmt.Fprintf(w, outPutStr)
+	fmt.Printf("test")
+	//features.RemoteSSHConnectionChecking()
 }
