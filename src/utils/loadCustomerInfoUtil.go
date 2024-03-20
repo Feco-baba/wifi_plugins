@@ -57,6 +57,6 @@ func LoadCustomerInfo() (cusInfo entity.CustomerInfo, err error) {
 	}
 
 	// 使用配置
-	log.Printf("LoadCustomerInfo:%+v", cusInfo)
+	log.Printf("LoadCustomerInfo:%+v", config)
 	return *config, nil
 }

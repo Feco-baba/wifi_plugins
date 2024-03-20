@@ -47,7 +47,7 @@ func Stop(w http.ResponseWriter, r *http.Request) {
 func DeleteConfig(w http.ResponseWriter, r *http.Request) {
 	//调用linux的命令
 	// 创建一个新的 exec.Command 对象
-	outCmd := exec.Command("rm", "/data/clash/yamls/customerInfo.yaml")
+	outCmd := exec.Command("rm", "/data/clash/yamls/config.yaml")
 	// 获取命令输出
 	output, err := outCmd.Output()
 	if err != nil {

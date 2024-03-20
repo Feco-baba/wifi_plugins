@@ -4,9 +4,9 @@ import (
 	"fmt"
 )
 
-func CommonExceptionHandler[T any](value T, err error) T {
+func CommonExceptionHandler(value string, err error) string {
 	if err != nil {
-		fmt.Printf("Exception Message: %+v", err.Error())
+		fmt.Printf(value+" Exception Message: %+v", err.Error())
 	}
 	return value
 }

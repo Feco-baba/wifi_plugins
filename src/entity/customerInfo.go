@@ -5,4 +5,5 @@ type CustomerInfo struct {
 	UserId           string `json:"userId"`
 	DeviceId         string `json:"deviceId"`
 	DeviceConfigLink string `json:"deviceConfigLink"`
+	FolderName       string `json:"folderName"`
 }
