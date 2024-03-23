@@ -1,15 +1,24 @@
 package utils
 
 import (
-	Common "wifi_plugins/src/common"
-	Entity "wifi_plugins/src/entity"
-	ExcetionHandler "wifi_plugins/src/excetion"
+	"log"
+	"wifi_plugins/common"
+	"wifi_plugins/entity"
 )
 
-func LoadSubscribeLinkUtil(subscribeLinKPrefix string, cusInfo Entity.CustomerInfo) (subscribeLink string) {
+func LoadSubscribeLinkUtil(subscribeLinKPrefix string, cusInfo entity.CustomerInfo) (subscribeLink string) {
 	//拼接SubscribeConfig的URL
-	url := subscribeLinKPrefix + cusInfo.UserId + cusInfo.DeviceId + Common.SubscribeConfigSuffix
-	deviceConfig := ExcetionHandler.CommonExceptionHandler(ReadRemoteConfig(url))
-	link := ExcetionHandler.CommonExceptionHandler(FileContentDecrypt(deviceConfig))
-	return link
+	url := subscribeLinKPrefix + cusInfo.UserId + cusInfo.DeviceId + common.SubscribeConfigSuffix
+	deviceConfig, err := ReadRemoteConfig(url)
+	if err != nil {
+		log.Println("Read Remote Config Exception Message: ", err.Error())
+	} else {
+		link, err := FileContentDecrypt(deviceConfig)
+		if err != nil {
+			log.Println("FileContentDecrypt Exception Message: ", err.Error())
+		} else {
+			subscribeLink = link
+		}
+	}
+	return subscribeLink
 }
