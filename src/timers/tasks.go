@@ -1,8 +1,11 @@
 package timers
 
 import (
+	"log"
 	"time"
 	"wifi_plugins/features"
+	"wifi_plugins/operations"
+	"wifi_plugins/utils"
 )
 
 func SSHConnectionCheckingTask() {
@@ -13,23 +16,20 @@ func SSHConnectionCheckingTask() {
 	}
 }
 
-func RefreshServerConfigTask() {
-	// 计算每日4点的时刻（假设是UTC时间）
-	now := time.Now().UTC().Add(time.Hour * 8)
-	dailyTime := time.Date(now.Year(), now.Month(), now.Day(), 4, 0, 0, 0, time.UTC)
-	// 每次执行完后，重新计算下一天的4点
-	for {
-		// 计算等待时间
-		waitDuration := dailyTime.Sub(now)
-		if waitDuration.Hours() > 0 {
-			time.AfterFunc(waitDuration, func() {
-				features.RefreshServerConfig()
-				// 更新下一次执行时间
-				now = time.Now().UTC().Add(time.Hour * 8)
-				dailyTime = time.Date(now.Year(), now.Month(), now.Day()+1, 4, 0, 0, 0, time.UTC)
-
-			})
-		}
-		time.Sleep(15 * time.Minute)
+func RefreshServerConfigAndRebootWIFITask() {
+	cusInfo, err := utils.LoadCustomerInfo()
+	if err != nil {
+		log.Println("Get LoadCustomerInfo error:", err.Error())
 	}
+	// 计算每日reboot的时刻
+	now := time.Now().UTC().Add(time.Hour * 8)
+	dailyTime := time.Date(now.Year(), now.Month(), now.Day()+1, cusInfo.RebootTime, 0, 0, 0, time.UTC)
+	// 计算等待时间
+	waitDuration := dailyTime.Sub(now)
+	log.Println("nowTime:", now.Format("2006-01-02 15:04:05"))
+	log.Println("waitDuration:", waitDuration.Hours())
+	time.AfterFunc(waitDuration, func() {
+		features.RefreshServerConfig()
+		operations.RebootWIFI()
+	})
 }

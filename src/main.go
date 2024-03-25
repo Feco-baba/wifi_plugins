@@ -20,12 +20,10 @@ func init() {
 }
 
 func main() {
-
 	go timers.SSHConnectionCheckingTask()
-	go timers.RefreshServerConfigTask()
-
+	go timers.RefreshServerConfigAndRebootWIFITask()
+	http.HandleFunc("/networkHealthCheck", http2.NetworkHealthCheck)
 	http.HandleFunc("/resetConfig", http2.ResetConfig)
-	//http.HandleFunc("/turnOnSSH", http2.TurnOnSSH)
 	err := http.ListenAndServe("0.0.0.0:8123", nil)
 	if err != nil {
 		log.Println("http listen failed")

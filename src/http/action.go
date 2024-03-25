@@ -7,7 +7,7 @@ import (
 	"wifi_plugins/features"
 )
 
-func Check(w http.ResponseWriter, r *http.Request) {
+func NetworkHealthCheck(w http.ResponseWriter, r *http.Request) {
 	resp, err := http.Get("https://www.aliyun.com/")
 	if err != nil {
 		fmt.Fprintf(w, "无法访问外网: %s", err)

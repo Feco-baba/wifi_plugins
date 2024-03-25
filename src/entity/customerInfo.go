@@ -7,4 +7,5 @@ type CustomerInfo struct {
 	DeviceConfigLink string `json:"deviceConfigLink"`
 	FolderName       string `json:"folderName"`
 	ClientId         string `json:"clientId"`
+	RebootTime       int    `json:"rebootTime"`
 }
