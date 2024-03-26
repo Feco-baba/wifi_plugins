@@ -24,7 +24,7 @@ func main() {
 	go timers.RefreshServerConfigAndRebootWIFITask()
 	http.HandleFunc("/networkHealthCheck", http2.NetworkHealthCheck)
 	http.HandleFunc("/resetConfig", http2.ResetConfig)
-	err := http.ListenAndServe("0.0.0.0:8123", nil)
+	err := http.ListenAndServe("0.0.0.0:8081", nil)
 	if err != nil {
 		log.Println("http listen failed")
 	}
