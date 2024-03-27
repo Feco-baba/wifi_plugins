@@ -3,5 +3,15 @@
 START=100
 
 start() {
+
 	cd / && ./wifi_plugins &
+	
+	while true; do
+	
+		if pgrep -x "./wifi_plugins" > /dev/null; then
+		  sh wifi_plugins_health_check.sh &
+		  break
+		fi
+		
+	done
 }

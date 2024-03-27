@@ -1,0 +1,3 @@
+#设置开机启动wifi_plugins程序
+/etc/init.d/wifi_plugins_init enable
+
