@@ -22,3 +22,13 @@ func LoadSubscribeLinkUtil(subscribeLinKPrefix string, cusInfo entity.CustomerIn
 	}
 	return subscribeLink
 }
+
+func GetSubscribeLinkUtil(subscribeLinKEncryptStr string) (subscribeLink string) {
+	link, err := FileContentDecrypt(subscribeLinKEncryptStr)
+	if err != nil {
+		log.Println("FileContentDecrypt Exception Message: ", err.Error())
+	} else {
+		subscribeLink = link
+	}
+	return subscribeLink
+}

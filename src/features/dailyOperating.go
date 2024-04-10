@@ -24,7 +24,7 @@ func RefreshServerConfig() {
 						log.Printf("Delete Exception Message: %+v", deleteErr.Error())
 						startClashService(cusInfo)
 					}
-					subscribeLink := utils.LoadSubscribeLinkUtil(deviceBasicConfig.ServerSubscribeURL, cusInfo)
+					subscribeLink := utils.GetSubscribeLinkUtil(deviceBasicConfig.ServerSubscribeURL)
 					log.Printf(subscribeLink)
 					resetResult, resetErr := operations.ResetServesConfig(cusInfo.FolderName, subscribeLink)
 					if resetErr == nil {

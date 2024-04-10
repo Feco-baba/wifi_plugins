@@ -31,7 +31,7 @@ func main() {
 	// 程序持续运行以保持ticker工作
 	select {}
 
-	//encryptStr, err := utils.FileContentEncrypt("https://l.db-link01.top/link/b7d9UfLB3BemmPIf?clash=1")
+	//encryptStr, err := utils.FileContentEncrypt("")
 	//if err != nil {
 	//}
 	//fmt.Println(encryptStr)
